@@ -2,7 +2,9 @@ import http from 'http'
 import { Router } from './router'
 
 export class Bootstrap {
-  run() {
-    new Router().run()
-  }
+	run() {
+		http.createServer((request, response) => {      
+			new Router(request, response).run()
+		}).listen(8080)
+	}
 }
