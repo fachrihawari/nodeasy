@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fachrihawari/easynode.git"
+    "url": "git+https://github.com/fachrihawari/nodeasy.git"
   },
   "keywords": [
     "Node.js",
@@ -20,9 +20,9 @@
   "author": "Fachri Hawari <fachri.hawari@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fachrihawari/easynode/issues"
+    "url": "https://github.com/fachrihawari/nodeasy/issues"
   },
-  "homepage": "https://github.com/fachrihawari/easynode#readme",
+  "homepage": "https://github.com/fachrihawari/nodeasy#readme",
   "devDependencies": {
     "babel-core": "^6.22.1",
     "babel-preset-latest": "^6.22.0",
