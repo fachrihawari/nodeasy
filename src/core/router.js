@@ -1,4 +1,8 @@
 import config from '../config/app'
+import webRoutes from '../routes/web'
+import path from 'path'
+import fs from 'fs'
+
 
 export class Router {
     constructor (req, res) {
@@ -6,17 +10,46 @@ export class Router {
         this.res = res
     }
     run() {
-        this.onErrorRequest()
-        this.onErrorResponse()
+        this.onError()
+        this.setHeaders()
         this.findRoute()
     }
     findRoute() {
-        if (this.req.method === 'GET' && this.req.url === '/echo') {
-            this.req.pipe(this.res)
-        }
-        else 
+
+        let routeCollection = webRoutes.collection 
+        let self = this
+
+        console.log(routeCollection)
+
+        let result = routeCollection.filter(function(v,i,a) {
+            return v.verb == self.req.method && v.url == self.req.url
+        })
+
+        if (result.length)
+            this.findController(result[0])
+        else
             this.onNotFound()
         
+    }
+    findController(route) {
+        let { verb, url, target } = route        
+
+        if (typeof target === 'function') {
+            target(this.req, this.res)
+        } else {
+            let [ controllerName, methodName ] = target.split("@")        
+            let fileName = path.join(config.directory.controller, controllerName+".js")
+            let self = this
+            let cb = fs.exists(fileName, (exists) => {
+                if (exists) {
+                    let controllerClass = require(fileName)[controllerName]
+                    let controllerInstance = new controllerClass()
+                    controllerInstance[methodName](self.req, self.res)
+                } else {
+                    self.onNotFound()
+                }
+            })   
+        }   
     }
     setHeaders() {
         this.res.setHeader('X-Powered-By', 'nodeasy')  
@@ -25,41 +58,17 @@ export class Router {
         this.res.statusCode = 404    
         this.res.end('Not Found!')
     }
-    onErrorRequest() {
+    onError() {
         this.req.on('error', (err) => {
             console.error(err)
             this.res.statusCode = 400
             this.res.end()
         })
-    }
-    onErrorResponse() {
+
         this.res.on('error', (err) => {
             console.error(err)
         })
     }
 }
 
-export class Route  {
-    constructor() {
-        
-    }
-    default(url, target) {
-        let [ controller, method ] = target.split('@')
-        console.log(controller, method)
-    }
-    get(url, target) {
-        this.default(url, target)
-    }
-    post() {
 
-    }
-    put() {
-
-    }
-    patch() {
-
-    }
-    delete() {
-
-    }
-}

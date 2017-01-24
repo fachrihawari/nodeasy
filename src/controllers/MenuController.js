@@ -1,4 +1,4 @@
-export class HomeController {
+export class MenuController {
 
     index(req, res) {
         res.end("Index page")
