@@ -7,6 +7,7 @@ export default {
         controller: path.join(rootDir, 'controllers'),
         model: path.join(rootDir, 'models'),
         view: path.join(rootDir, 'views'),
-        route: path.join(rootDir, 'routes')
+        route: path.join(rootDir, 'routes'),
+        public: path.join(rootDir, 'public') 
     }
 }
