@@ -7,7 +7,7 @@ route.get('/about', 'PageController@about')
 route.get('/contact', 'PageController@contact')
 
 route.get('/anonymous', (req, res) => {
-    res.view('page/home')
+    res.view('page/home', { name : 'anonymous' })
 })
 
 route.resource('menu', 'MenuController', { 

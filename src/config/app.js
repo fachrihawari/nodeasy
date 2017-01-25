@@ -1,4 +1,5 @@
 import path from 'path'
+import mimes from './mimes'
 
 let rootDir = path.dirname(__dirname)
 
@@ -10,5 +11,6 @@ export default {
         route: path.join(rootDir, 'routes'),
         public: path.join(rootDir, 'public'),        
         core: path.join(rootDir, 'core')  
-    }
+    },
+    mimes
 }

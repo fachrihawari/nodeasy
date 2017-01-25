@@ -1,11 +1,15 @@
 import http from 'http'
 import { Router } from './Router'
-import webRoutes from '../routes/web'
+
+const port = process.env.NODE_ENV === 'production' ? 8080 : 8080
 
 export class Bootstrap {
 	run() {
-		http.createServer((request, response) => {      
+		let self = this
+		http.createServer((request, response) => {
 			new Router(request, response).run()
-		}).listen(8080)
+		}).listen(port)
+		console.log(`Server listening on port ${port}`)
 	}
 }
+

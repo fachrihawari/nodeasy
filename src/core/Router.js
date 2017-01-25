@@ -1,7 +1,9 @@
 import config from '../config/app'
 import webRoutes from '../routes/web'
-import path from 'path'
+import http from 'http'
 import fs from 'fs'
+import path from 'path'
+import url from 'url'
 import { View } from './View'
 
 export class Router {
@@ -16,31 +18,75 @@ export class Router {
         this.findRoute()
         
     }
-    
-    findRoute() {
 
+	findForResponse(result) {
+        let self = this
+		// parse URL
+		const parsedUrl = url.parse(this.req.url)
+		// extract URL path
+		let pathname =  path.join(config.directory.public, `${parsedUrl.pathname}`)
+		
+        // based on the URL path, extract the file extention. e.g. .js, .doc, ...
+        const ext = path.parse(pathname).ext
+        
+        if ( ! ext ) {
+            /*
+             * call route if no have extension
+             */
+            if (result.length)
+                this.findController(result[0])
+            else
+                this.onNotFound()
+        } else {
+            
+            /*
+             * Find file if have extension
+             */
+            fs.exists(pathname, (exist) => {            
+                if(!exist) {
+                    this.res.statusCode = 404
+                    this.res.end(`File ${parsedUrl.pathname} not found!`)
+                } else {
+
+                    // if is a directory
+                    if ( ! fs.statSync(pathname).isDirectory() ) {                
+                    
+                        // read file from file system
+                        fs.readFile(pathname, function(err, data){
+                            if(err){
+                                self.res.statusCode = 500
+                                self.res.end(`Error getting the file: ${err}.`)
+                                console.log(`Error getting the file: ${err}.`)
+                            } else {
+                                
+                                let mime = ext.replace('.','')
+                                // if the file is found, set Content-type and send data
+                                self.res.setHeader('Content-type', config.mimes[mime] || 'text/plain' )
+                                self.res.end(data)
+                                
+                            }
+         
+                       })
+                    }
+                }
+            })
+        }
+	}
+
+    findRoute() {
 
         let routeCollection = webRoutes.collection 
         let self = this
-
 
         this.addResponse('view', (filename, params = {}) =>  {
             self.res.write(new View(filename, params).render())
         })
 
-
         let result = routeCollection.filter(function(v,i,a) {
             return v.verb == self.req.method && v.url == self.req.url
         })
 
-        if (result.length)
-            this.findController(result[0])
-        else
-            this.onNotFound()
-
-
-        
-        
+        this.findForResponse(result)     
     }
 
     addResponse(key, value) {
@@ -63,10 +109,14 @@ export class Router {
                 if (exists) {
                     let controllerClass = require(fileName)[controllerName]
                     let controllerInstance = new controllerClass()
-                    controllerInstance[methodName](self.req, self.res)
-                    this.res.end()
+                    try {
+                        controllerInstance[methodName](self.req, self.res)
+                        this.res.end()
+                    } catch (err) {
+                        this.res.end(`Method ${methodName} not found in controller ${controllerName}`)
+                    }
                 } else {
-                    self.onNotFound()
+                    this.onNotFound()
                 }
             })   
         }   
@@ -80,7 +130,8 @@ export class Router {
     }
     onNotFound() {    
         this.res.statusCode = 404    
-        self.res.end()
+        this.res.write('Not Found!')
+        this.res.end()
     }
     onError() {
 
