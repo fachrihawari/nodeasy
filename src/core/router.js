@@ -19,8 +19,6 @@ export class Router {
         let routeCollection = webRoutes.collection 
         let self = this
 
-        console.log(routeCollection)
-
         let result = routeCollection.filter(function(v,i,a) {
             return v.verb == self.req.method && v.url == self.req.url
         })
