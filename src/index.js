@@ -1,4 +1,4 @@
-import  { Bootstrap }  from './core/bootstrap'
+import  { Bootstrap }  from './core/Bootstrap'
 
 let bootstrap = new Bootstrap()
 

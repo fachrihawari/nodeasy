@@ -1,7 +1,9 @@
-export class HomeController {
+export class PageController {
 
     index(req, res) {
-        res.end("Index page")
+        res.view('page/home', {
+            name: 'Fachri Hawari'
+        })
     }
 
     show() {

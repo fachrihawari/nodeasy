@@ -1,12 +1,15 @@
-import { Route } from './../core/route'
+import { RouteCollection } from './../core/RouteCollection'
 
-let route = new Route
+let route = new RouteCollection()
 
-route.get('/echo', 'HomeController@index')
-route.post('/echo', 'HomeController@store')
-route.get('/', (req, res) => {
-    res.end("Root page")
+route.get('/', 'PageController@index')
+route.get('/about', 'PageController@about')
+route.get('/contact', 'PageController@contact')
+
+route.get('/anonymous', (req, res) => {
+    res.view('page/home')
 })
+
 route.resource('menu', 'MenuController', { 
     except: ['create', 'edit']
 })

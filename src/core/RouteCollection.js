@@ -1,5 +1,4 @@
-
-export class Route  {
+export class RouteCollection  {
     constructor() {
         this.collection = []
     }
