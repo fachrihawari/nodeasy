@@ -1,16 +1,16 @@
 export class PageController {
     index(req, res) {
-        res.view('page/home', {
+        res.view('pages/home', {
             name: 'Fachri Hawari'
         })
     }
     about(req, res) {
-        res.view('page/about', {
+        res.view('pages/about', {
             name: 'Fachri Hawari'
         })
     }
     contact(req, res) {
-        res.view('page/contact', {
+        res.view('pages/contact', {
             name: 'Fachri Hawari'
         })
     }
