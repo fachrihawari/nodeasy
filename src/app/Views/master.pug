@@ -1,12 +1,16 @@
 html
-    head
-        title Hello World from nodeasy
-        link(href="css/bulma.css", rel="stylesheet")
+  head
+      title Hello World from nodeasy
+      link(href="css/bulma.css", rel="stylesheet")
         
 
-    body
-        include shared/header
-        block content
-        include shared/footer
+  body
+  
+    include shared/header
+  
+    .container
+      block content
+  
+    include shared/footer
         
 
