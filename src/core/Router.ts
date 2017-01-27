@@ -1,18 +1,24 @@
-import config from '../config/app'
+import * as config from '../config/app'
 import webRoutes from '../routes/web'
-import http from 'http'
-import fs from 'fs'
-import path from 'path'
-import url from 'url'
+import * as http from 'http'
+import * as  fs from 'fs'
+import * as  path from 'path'
+import * as  url from 'url'
 import { View } from './View'
 
+
+
+
 export class Router {
+
+    req: http.ServerRequest
+    res: http.ServerResponse
+
     constructor (req, res) {
         this.req = req
         this.res = res
     }
     run() {
-
         this.onError()
         this.setHeaders()
         this.findRoute()
@@ -33,8 +39,9 @@ export class Router {
             /*
              * call route if no have extension
              */
-            if (result.length)
+            if (result.length) {
                 this.findController(result[0])
+            }
             else
                 this.onNotFound()
         } else {
@@ -103,19 +110,25 @@ export class Router {
             target(this.req, this.res)
             this.res.end()
         } else {
+            
             let [ controllerName, methodName ] = target.split("@")        
-            let fileName = path.join(config.directory.controller, controllerName+".js")
-            let cb = fs.exists(fileName, (exists) => {
+            let fileName = path.join(config.directory.controller, controllerName + ( process.env.NODE_ENV === 'production' ? '.js': '.ts' ))
+            
+            let cb = fs.exists(fileName, (exists) => {            
+               
                 if (exists) {
+               
                     let controllerClass = require(fileName)[controllerName]
                     let controllerInstance = new controllerClass()
+               
                     try {
                         controllerInstance[methodName](self.req, self.res)
                         this.res.end()
                     } catch (err) {
                         this.res.end(`Method ${methodName} not found in controller ${controllerName}`)
                     }
-                } else {
+               
+                 } else {
                     this.onNotFound()
                 }
             })   

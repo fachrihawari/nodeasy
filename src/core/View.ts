@@ -1,8 +1,12 @@
-import pug from 'pug'
-import config from '../config/app'
-import path from 'path'
+import * as pug from 'pug'
+import * as config from '../config/app'
+import * as path from 'path'
 
 export class View {
+
+    params: Object
+    filename: String
+    
     constructor(filename, params) {
         this.filename = filename
         this.params = params

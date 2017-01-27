@@ -1,4 +1,4 @@
-import http from 'http'
+import * as http from 'http'
 import { Router } from './Router'
 
 const port = process.env.NODE_ENV === 'production' ? 8080 : 8080

@@ -1,7 +1,13 @@
+interface IRouteContent {
+    verb: String, 
+    url: String, 
+    target: String
+}
+
 export class RouteCollection  {
-    constructor() {
-        this.collection = []
-    }
+
+    collection: Array<IRouteContent> = []
+    
     default(verb, url, target) {        
         this.collection.push({
             verb, url, target
@@ -22,7 +28,7 @@ export class RouteCollection  {
     delete(url, target) {
         this.default('DELETE', url, target)
     }
-    resource(bind, target, option = {}) {
+    resource(bind, target, option: any) {
         let self = this
 
         let filteredResource = this.resourceValue
