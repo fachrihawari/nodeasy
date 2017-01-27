@@ -1,2 +1,2 @@
 # nodeasy
-Simple nodejs framework
+Easy node js framework
