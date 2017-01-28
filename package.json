@@ -33,5 +33,6 @@
     "pug": "next",
     "ts-node": "next",
     "typescript": "next"
-  }
+  },
+  "licenses": "MIT"
 }
