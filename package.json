@@ -25,8 +25,11 @@
   "homepage": "https://github.com/fachrihawari/nodeasy#readme",
   "dependencies": {
     "@types/node": "next",
+    "@types/path-to-regexp": "next",
     "@types/pug": "next",
     "bulma": "next",
+    "mongoose": "^4.7.8",
+    "path-to-regexp": "next",
     "pug": "next",
     "ts-node": "next",
     "typescript": "next"

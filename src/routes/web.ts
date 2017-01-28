@@ -7,7 +7,7 @@
         res.view('page/home', { name : 'anonymous' })
     })
     
-    
+    route.post('/:username/post/:id', 'UserController@profile')
 */
 
 
@@ -19,8 +19,9 @@ route.get('/', 'PageController@index')
 route.get('/about', 'PageController@about')
 route.get('/contact', 'PageController@contact')
 
-route.resource('menu', 'MenuController', { 
-    except: ['create', 'edit']
-})
+route.get('/login', 'UserController@login')
+route.post('/login', 'UserController@loginSession')
+route.get('/register', 'UserController@register')
+route.post('/register', 'UserController@createAccount')
 
 export default route

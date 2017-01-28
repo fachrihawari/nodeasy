@@ -1,6 +1,6 @@
 import * as pug from 'pug'
-import * as config from '../config/app'
 import * as path from 'path'
+import { directory } from '../config'
 
 export class View {
 
@@ -12,6 +12,6 @@ export class View {
         this.params = params
     }
     render () {
-        return pug.renderFile( path.join(config.directory.view, this.filename + '.pug'), this.params)
+        return pug.renderFile( path.join(directory.view, this.filename + '.pug'), this.params)
     }
 }

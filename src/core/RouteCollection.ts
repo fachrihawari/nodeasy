@@ -28,7 +28,7 @@ export class RouteCollection  {
     delete(url, target) {
         this.default('DELETE', url, target)
     }
-    resource(bind, target, option: any) {
+    resource(bind, target, option: any = {}) {
         let self = this
 
         let filteredResource = this.resourceValue
