@@ -34,5 +34,5 @@
     "ts-node": "next",
     "typescript": "next"
   },
-  "licenses": "MIT"
+  "license": "MIT"
 }
