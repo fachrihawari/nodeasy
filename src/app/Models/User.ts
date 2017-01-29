@@ -18,5 +18,4 @@ export interface IUser extends Document {
   data: any[];
 }
 
-// const UserModel =
 export default model<IUser>('User', UserSchema);

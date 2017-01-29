@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/fachrihawari/nodeasy#readme",
   "dependencies": {
+    "@types/mongoose": "^4.7.3",
     "@types/node": "next",
     "@types/path-to-regexp": "next",
     "@types/pug": "next",
@@ -33,6 +34,5 @@
     "pug": "next",
     "ts-node": "next",
     "typescript": "next"
-  },
-  "license": "MIT"
+  }
 }
