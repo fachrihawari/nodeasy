@@ -17,6 +17,7 @@ export class Router {
         this.res = res
         console.log( req.method, req.url)
     }
+   
     run() {
         this.onError()
         this.setHeaders()
@@ -45,8 +46,8 @@ export class Router {
              */
             fs.exists(pathname, (exist) => {            
                 if(!exist) {
-                    this.res.statusCode = 404
-                    this.res.end(`File ${parsedUrl.pathname} not found!`)
+                    self.res.statusCode = 404
+                    self.res.end(`File ${parsedUrl.pathname} not found!`)
                 } else {
 
                     // if is a directory
@@ -180,22 +181,26 @@ export class Router {
 
 
     }
+
     setHeaders() {
 
         this.res.setHeader('X-Powered-By', 'nodeasy')  
 
     }
+
     onNotFound() {    
         this.res.statusCode = 404    
         this.res.write('Not Found!')
         this.res.end()
     }
-    onError() {
 
+    onError() {
+        let self = this
         this.req.on('error', (err) => {
-            console.error(err)
-            this.res.statusCode = 400
-            this.res.end()
+            console.error(err);
+            self.res.statusCode = 400;
+            self.res.end();
+            
         })
 
         this.res.on('error', (err) => {

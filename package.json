@@ -24,15 +24,16 @@
   },
   "homepage": "https://github.com/fachrihawari/nodeasy#readme",
   "dependencies": {
+    "@types/es6-promise": "^0.0.32",
     "@types/mongoose": "^4.7.3",
-    "@types/node": "next",
-    "@types/path-to-regexp": "next",
-    "@types/pug": "next",
-    "bulma": "next",
-    "mongoose": "^4.7.8",
-    "path-to-regexp": "next",
-    "pug": "next",
-    "ts-node": "next",
-    "typescript": "next"
+    "@types/node": "^7.0.4",
+    "@types/path-to-regexp": "^1.0.29",
+    "@types/pug": "^2.0.4",
+    "bulma": "^0.3.1",
+    "mongoose": "^4.8.0",
+    "path-to-regexp": "^1.7.0",
+    "pug": "^2.0.0-beta10",
+    "ts-node": "^2.0.0",
+    "typescript": "^2.1.5"
   }
 }

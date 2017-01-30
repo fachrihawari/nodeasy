@@ -1,0 +1,11 @@
+extends ../master
+
+block content
+    
+    p Register Page
+
+    form(action='/register' method='POST')
+        input(name='username')
+        input(name='password')
+        button Submit
+    
