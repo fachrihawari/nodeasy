@@ -1,12 +1,12 @@
 /*
     Route file, support anonymous function and Controller
-    like below 
-    
+    like below
+
     route.get('/contact', 'PageController@contact')
     route.get('/anonymous', (req, res) => {
         res.view('page/home', { name : 'anonymous' })
     })
-    
+
     route.post('/:username/post/:id', 'UserController@profile')
 */
 
@@ -23,5 +23,10 @@ route.get('/login', 'UserController@login')
 route.post('/login', 'UserController@loginSession')
 route.get('/register', 'UserController@register')
 route.post('/register', 'UserController@createAccount')
+route.get('/user/:username', 'UserController@show')
+
+
+
+
 
 export default route

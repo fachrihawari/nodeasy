@@ -1,21 +1,25 @@
 let databaseConfiguration = {
-    mysql: {
+    MySQL: {
+        driver: 'MySQL',
         host: 'localhost',
         port: '80',
         username: '',
         password: '',
-        database: ''        
+        database: '',
+        debug: true
     },
-    mongodb: {
+    MongoDB: {
+        driver: 'MongoDB',
         host: 'localhost',
-        port: '80',
-        username: '',
-        password: '',
-        database: ''        
+        port: '27017',
+        username: 'nodeasy',
+        password: 'nodeasy',
+        database: 'nodeasy',
+        debug: true
     }
 }
 
 
-let currentUse = databaseConfiguration.mongodb
+let currentUse = databaseConfiguration.MongoDB
 
 export default currentUse
