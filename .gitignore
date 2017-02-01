@@ -5,3 +5,5 @@ npm-debug.log
 yarn-error.log
 yarn.lock
 .c9
+data
+mongod

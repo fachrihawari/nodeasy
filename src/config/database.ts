@@ -12,8 +12,8 @@ let databaseConfiguration = {
         driver: 'MongoDB',
         host: 'localhost',
         port: '27017',
-        username: 'nodeasy',
-        password: 'nodeasy',
+        username: '',
+        password: '',
         database: 'nodeasy',
         debug: true
     }

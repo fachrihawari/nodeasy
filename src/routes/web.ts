@@ -27,6 +27,4 @@ route.get('/user/:username', 'UserController@show')
 
 
 
-
-
 export default route

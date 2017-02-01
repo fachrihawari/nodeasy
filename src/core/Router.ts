@@ -1,6 +1,7 @@
 import * as config from '../config'
 import * as http from 'http'
 import * as fs from 'fs'
+import * as util from 'util'
 import * as path from 'path'
 import * as url from 'url'
 import * as pathToRegexp from 'path-to-regexp'
@@ -82,6 +83,11 @@ export class Router {
         let self = this
         this.addResponse('view', (filename, params = {}) =>  {
             self.res.write(new View(filename, params).render())
+            self.res.end()
+        })
+
+        this.addResponse('dump', (data) =>  {            // self.res.writeHead(200, { "Content-Type": "application/json" });
+            self.res.end(util.inspect(data));
         })
 
         var body: any = []
@@ -171,7 +177,6 @@ export class Router {
 
                     try {
                         controllerInstance[methodName](self.req, self.res)
-                        self.res.end()
                     } catch (err) {
                         this.res.end(`Method ${methodName} not found in controller ${controllerName}`)
                     }
