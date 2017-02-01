@@ -31,3 +31,6 @@ function copyFile(source, target, cb) {
 copyFile('node_modules/bulma/css/bulma.css', 'src/public/css/bulma.css', (err)=>{
     console.log(err)
 })
+copyFile('node_modules/font-awesome/css', 'src/public/css', (err)=>{
+    console.log(err)
+})

@@ -1,16 +1,28 @@
 html
-  head
-    title Hello World from nodeasy
-    link(href="/css/bulma.css", rel="stylesheet")
-        
+    head
+        title Hello World from nodeasy
+        link(href="/css/bulma.css", rel="stylesheet")
+        link(href="/css/font-awesome.css", rel="stylesheet")
 
-  body
-  
-    include shared/header
-  
-    .container
-      block content
-  
-    include shared/footer
-        
 
+        style(type='text/css').
+            footer.footer {
+                padding: 1rem;
+            }
+            footer .footer-label {
+                line-height: 1rem;
+            }
+
+            footer .footer-label i {
+                padding: 0 5px;
+                color: #ff3860;
+            }
+
+    body
+
+        include shared/header
+
+        .container
+            block content
+
+        include shared/footer
