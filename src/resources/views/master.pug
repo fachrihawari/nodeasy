@@ -18,11 +18,20 @@ html
                 color: #ff3860;
             }
 
+            body {
+                display: flex;
+                min-height: 100vh;
+                flex-direction: column;
+            }
+            main.container {
+                flex: 1;
+            }
+
     body
 
         include shared/header
 
-        .container
+        main.container.section
             block content
 
         include shared/footer

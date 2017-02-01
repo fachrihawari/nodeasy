@@ -13,5 +13,7 @@ export default {
     pdf: 'application/pdf',
     doc: 'application/msword',
     eot: 'appliaction/vnd.ms-fontobject',
-    ttf: 'aplication/font-sfnt'
+    ttf: 'aplication/font-sfnt',
+    woff2: 'font/woff2',
+    woff: 'font/woff'
 }
