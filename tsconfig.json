@@ -6,6 +6,7 @@
         "removeComments": true,
         "outDir": "build"
     },
+    "compileOnSave": false,
     "include": [
         "src/**/*"
     ],
