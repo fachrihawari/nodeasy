@@ -3,35 +3,14 @@ html
         title Hello World from nodeasy
         link(href="/css/bulma.css", rel="stylesheet")
         link(href="/css/font-awesome.css", rel="stylesheet")
-
-
-        style(type='text/css').
-            footer.footer {
-                padding: 1rem;
-            }
-            footer .footer-label {
-                line-height: 1rem;
-            }
-
-            footer .footer-label i {
-                padding: 0 5px;
-                color: #ff3860;
-            }
-
-            body {
-                display: flex;
-                min-height: 100vh;
-                flex-direction: column;
-            }
-            main.container {
-                flex: 1;
-            }
+        link(href="/css/app.css", rel="stylesheet")
 
     body
 
         include shared/header
 
-        main.container.section
-            block content
+        main.container
+            section.section
+                block content
 
         include shared/footer

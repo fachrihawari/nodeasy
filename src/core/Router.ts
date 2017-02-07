@@ -17,7 +17,7 @@ export class Router {
     constructor (req, res) {
         this.req = req
         this.res = res
-        console.log( req.method, req.url)
+        console.log(req.method, req.url)
     }
 
     run() {
@@ -123,6 +123,9 @@ export class Router {
         this.findForResponse(currentRoute)
     }
 
+    /**
+     * @param currentRoute: Object 
+     */
     addRequestParams(currentRoute) {
 
         let keys = []
