@@ -1,0 +1,19 @@
+footer {
+    &.sticky { 
+        position: absolute;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 2;
+        padding: 1rem;
+    }
+    &.footer {
+        .footer-label {
+            line-height: 1rem;
+            i {
+                padding: 0 5px;
+                color: #ff3860;
+            }
+        }
+    }
+} 

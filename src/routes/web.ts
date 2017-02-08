@@ -25,6 +25,4 @@ route.get('/register', 'UserController@register')
 route.post('/register', 'UserController@createAccount')
 route.get('/user/:username', 'UserController@show')
 
-
-
 export default route

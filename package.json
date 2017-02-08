@@ -5,8 +5,11 @@
   "scripts": {
     "start": "NODE_ENV=production node ./build/index.js",
     "dev": "NODE_ENV=development nodemon --exec ./node_modules/.bin/ts-node -- ./src/index.ts",
-    "praBuild": "cp -R ./src/public ./build/public && cp -R ./src/resources ./build/resources",
-    "build": "tsc && npm run praBuild"
+    "pra-build": "cp -R ./src/public ./build/public && cp -R ./src/resources ./build/resources",
+    "build": "tsc && npm run pra-build",
+    "ass-webpack": "NODE_ENV=development webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "ass-dev": "NODE_ENV=development webpack --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "ass-pro": "NODE_ENV=production webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -31,6 +34,7 @@
     "@types/pug": "^2.0.4",
     "bulma": "^0.3.1",
     "font-awesome": "^4.7.0",
+    "laravel-mix": "^0.7.2",
     "mongoose": "^4.8.0",
     "path-to-regexp": "^1.7.0",
     "pug": "^2.0.0-beta10",
