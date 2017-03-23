@@ -170,7 +170,7 @@ export class Router {
 
             let [ controllerName, methodName ] = target.split("@")
             let fileName = path.join(config.directory.controller, controllerName + ( process.env.NODE_ENV === 'production' ? '.js': '.ts' ))
-
+            
             let cb = fs.exists(fileName, (exists) => {
 
                 if (exists) {

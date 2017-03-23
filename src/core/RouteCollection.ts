@@ -8,6 +8,15 @@ export class RouteCollection  {
 
     collection: Array<IRouteContent> = []
     
+    /**
+     * Default wrapper
+     * 
+     * @param {any} verb 
+     * @param {any} url 
+     * @param {any} target 
+     * 
+     * @memberOf RouteCollection
+     */
     default(verb, url, target) {        
         this.collection.push({
             verb, url, target
@@ -28,6 +37,17 @@ export class RouteCollection  {
     delete(url, target) {
         this.default('DELETE', url, target)
     }
+
+
+    /**
+     * Resource method for route scaffoldings
+     * 
+     * @param {any} bind 
+     * @param {any} target 
+     * @param {*} [option={}] 
+     * 
+     * @memberOf RouteCollection
+     */
     resource(bind, target, option: any = {}) {
         let self = this
 
@@ -53,6 +73,8 @@ export class RouteCollection  {
         })
 
     }
+
+    
     get resourceValue() {
         return [
             { verb: 'GET', method: 'index', url: ''},
